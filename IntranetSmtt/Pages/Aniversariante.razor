@@ -1,0 +1,75 @@
+@page "/aniversariantes"
+@inject IJSRuntime JS
+
+<!-- BLOCO DATAS ANIVERSARIANTES-->
+            <div id="aniversariantes" class="w-full">
+                <h2 class="text-1xl font-normal p-4 bg-orange-500 text-white w-full"><i class="fas fa-birthday-cake"></i> Aniversariantes de <span id="mes-atual"></span></h2>
+                <div class="relative overflow-hidden w-full border-4 border-orange-500 h-[220px] overflow-y-auto">
+                    <ul id="birthday-list" class="ml-5">
+                        <li data-date="01/02" class="p-2">01/02 - Isaias Ferreira de Santana 🎁</li>
+                        <li data-date="02/02" class="p-2">02/02 - Rommel de Carvalho Melo 🎁</li>
+                        <li data-date="05/02" class="p-2">05/02 - João Barbosa de Souza Junior 🎁</li>
+                        <li data-date="05/02" class="p-2">05/02 - Jose Diego de Souza Santos 🎁</li>
+                        <li data-date="05/02" class="p-2">05/02 - Tony Henrique Santana Fontes dos Santos 🎁</li>
+                        <li data-date="06/02" class="p-2">06/02 - Monike Barbosa Andrade 🎁</li>
+                        <li data-date="08/02" class="p-2">08/02 - Everton Machado Barreto dos Santos 🎁</li>
+                        <li data-date="09/02" class="p-2">09/02 - Antônio Luiz de Almeida Neto 🎁</li>
+                        <li data-date="10/02" class="p-2">10/02 - Verônica Alves dos Santos 🎁</li>
+                        <li data-date="10/02" class="p-2">10/02 - Fabio Souza Gois 🎁</li>
+                        <li data-date="14/02" class="p-2">14/02 - Jose Ricardo Targino da Silva 🎁</li>
+                        <li data-date="16/02" class="p-2">16/02 - Verônica Pinheiro da Silva 🎁</li>
+                        <li data-date="16/02" class="p-2">16/02 - Euler Cruz da Silva 🎁</li>
+                        <li data-date="17/02" class="p-2">17/02 - Walter Cleiton Fabio dos Santos 🎁</li>
+                        <li data-date="18/02" class="p-2">18/02 - Jennefer Vitorio Menezes dos Santos 🎁</li>
+                        <li data-date="22/02" class="p-2">22/02 - Marylyn Fran Costa Santos 🎁</li>
+                        <li data-date="23/02" class="p-2">23/02 - Maria Heloisa Barreto 🎁</li>
+                        <li data-date="24/02" class="p-2">24/02 - Pablo Alves Freire 🎁</li>
+                        <li data-date="25/02" class="p-2">25/02 - Claudio Santos Freitas 🎁</li>
+                        <li data-date="25/02" class="p-2">25/02 - Thiago Henrique Maranhão Feitosa 🎁</li>
+                        <li data-date="25/02" class="p-2">25/02 - Mays Rosa da Silva Menezes 🎁</li>
+                        <li data-date="25/02" class="p-2">25/02 - Marcia Cecilia Correia de Altantara 🎁</li>
+                        <li data-date="26/02" class="p-2">26/02 - Haroldo Antônio Araujo Cardoso 🎁</li>
+                        <li data-date="27/02" class="p-2">27/02 - Edson Braz de Santana 🎁</li>
+                        <li data-date="28/02" class="p-2">28/02 - Michele Matos Queiroz 🎁</li>
+                        <li data-date="28/02" class="p-2">28/02 - Claudivan dos Santos Prazeres 🎁</li>
+                    </ul>
+                    <p id="no-birthday-message" class="text-center" style="display: none;">Hoje não há aniversariantes. 😔</p>
+                </div>                
+                <button id="toggle-button" @onclick="MostrarListaCompleta" class="text-white hover:underline text-sm font-normal p-1 mt-1 bg-orange-500 w-full"><i class="fas fa-list mr-2"></i> Lista Completa</button> 
+                </div>
+              
+                
+        
+@code {
+    private bool isFullListVisible = false;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(500); // Aguarde 500ms antes de chamar o JS
+            await JS.InvokeVoidAsync("mostrarMesAtual");
+            await JS.InvokeVoidAsync("showBirthdayOfTheDay");
+            await JS.InvokeVoidAsync("addClickEventToBirthdays");           
+        }        
+    }
+    private async Task MostrarListaCompleta()
+    {
+        if (isFullListVisible)
+    {
+        await JS.InvokeVoidAsync("showBirthdayOfTheDay");
+    }
+    else
+    {
+        await JS.InvokeVoidAsync("showFullList");
+    }
+
+    isFullListVisible = !isFullListVisible;
+    }
+
+    private async Task AtivarEfeitosDeCelebracao()
+    {
+        await JS.InvokeVoidAsync("iniciarChuvaDeConfetes");
+        await JS.InvokeVoidAsync("exibirPalmas");
+    }
+    
+}

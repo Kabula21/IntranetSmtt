@@ -1,0 +1,62 @@
+@page "/datascomemorativas"
+@inject IJSRuntime JS
+
+<!-- BLOCO DATAS COMEMORATIVAS-->
+<div id="datascomemorativas" class="w-full h-auto">
+    <h2 class="text-1xl font-normal p-4 bg-yellow-300 text-gray-600">
+        <i class="fas fa-calendar-alt"></i> Datas Comemorativas
+    </h2>                
+    <div class="relative overflow-hidden w-full border-4 border-yellow-300 h-[575px] overflow-y-auto">
+        
+        @code {
+            private Dictionary<string, List<string>> datasComemorativas = new()
+            {
+                { "Janeiro", new List<string> { "01/01 - Confraternização Universal" } },
+                { "Fevereiro", new List<string> { "14/02 - Dia dos Namorados", "28/02 - Carnaval" } },
+                { "Março", new List<string> { "03/03 - Carnaval", "04/03 - Carnaval", "05/03 - Carnaval", "08/03 - Dia Internacional da Mulher", "17/03 - Aniversário de Aracaju", "20/03 - Início do Outono", "25/03 - Dia da Constituição" } },
+                { "Abril", new List<string> { "14/04 - Quinta-feira Santa", "21/04 - Tiradentes" } },
+                { "Maio", new List<string> { "01/05 - Dia do Trabalhador", "11/05 - Guarda de Trânsito", "18/05 - Dia Nacional de Combate ao Abuso e Exploração Sexual de Crianças e Adolescentes" } },
+                { "Junho", new List<string> { "05/06 - DNIT/SE", "12/06 - Dia dos Namorados", "11/06 - Marinha Brasileira", "19/06 - Corpus Christi", "19/06 - Aniversário da Lei Seca", "23/06 - Aniversário do Sistema Penitenciário Federal", "24/06 - Festa de São João" } },
+                { "Julho", new List<string> { "08/07 - Independência de Sergipe", "09/07 - Revolução Constitucionalista" } },
+                { "Agosto", new List<string> { "11/08 - Dia do Estudante" } },
+                { "Setembro", new List<string> { "03/09 - Dia do Guarda Civil Municipal", "07/09 - Independência do Brasil", "10/09 - Dia Mundial de Combate ao Suicídio", "14/09 - SEST-SENAT", "16/09 - Dia Nacional do Caminhoneiro", "18/09 a 25/09 - Semana Nacional de Trânsito", "23/09 - Aniversário de 28 anos do Código de Trânsito Brasileiro (CTB)" } },
+                { "Outubro", new List<string> { "08/10 - Dia do Nordestino", "12/10 - Nossa Senhora Aparecida", "12/10 - Dia das Crianças", "23/10 - DETRAN/SE", "28/10 - Dia do Servidor Público" } },
+                { "Novembro", new List<string> { "02/11 - Finados", "15/11 - Proclamação da República", "16/11 - Dia do Policial Federal", "17/11 - Dia Mundial em Memória das Vítimas de Trânsito", "19/11 - Dia da Bandeira", "20/11 - Dia da Consciência Negra", "23/11 - Dia Nacional de Combate ao Câncer Infantil", "25/11 - Dia Internacional Pela Eliminação da Violência Contra a Mulher", "27/11 - Dia Nacional de Combate ao Câncer" } },
+                { "Dezembro", new List<string> { "08/12 - Dia de Nossa Senhora da Conceição", "24/12 - Véspera de Natal", "31/12 - Véspera de Ano Novo" } }
+            };
+            
+            private string? selectedMonth;
+
+            protected override void OnInitialized()
+            {
+                var mesAtual = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"));
+                selectedMonth = char.ToUpper(mesAtual[0]) + mesAtual.Substring(1);
+            }
+
+            private void ToggleMonth(string month)
+            {
+                selectedMonth = selectedMonth == month ? null : month;
+            }
+        }
+        
+        @foreach (var mes in datasComemorativas.Keys)
+        {
+            <button @onclick="() => ToggleMonth(mes)" class="accordion w-full p-4 text-left focus:outline-none text-gray-600 hover:bg-yellow-200 transition-all ease-in-out">
+                <span class="flex justify-between items-center">@mes
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-all ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </span>
+            </button>
+            
+            <div class="panel p-4 bg-gray-100" style="display: @(selectedMonth == mes ? "block" : "none")">
+                <ul>
+                    @foreach (var evento in datasComemorativas[mes])
+                    {
+                        <li>@evento</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

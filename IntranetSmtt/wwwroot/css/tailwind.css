@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientAnimation 3s ease infinite;
+}
+
+#birthday-list li:nth-child(odd):hover {
+    background-color: #fefcbf;
+    /* cor amarela */
+}
+
+#birthday-list li:nth-child(even):hover {
+    background-color: #bfdbfe;
+    /* cor azul */
+}
+
+/* Hover dinâmico para linhas ímpares e pares */
+#ramaisTable tr:nth-child(odd):hover {
+    background-color: #fefcbf;
+    /* cor amarela */
+}
+
+#ramaisTable tr:nth-child(even):hover {
+    background-color: #bfdbfe;
+    /* cor azul */
+}
+

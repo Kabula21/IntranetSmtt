@@ -1,0 +1,250 @@
+@page "/ramais"
+@inject IJSRuntime JS
+
+<div id="ramais" class="w-full h-auto">
+<h2 class="text-1xl font-normal mb-0 p-4 bg-pink-500 text-white w-full"><i class="fas fa-phone"></i> Ramais</h2>
+<div class="relative overflow-hidden w-full border-4 border-pink-500 h-[575px] overflow-y-auto"> 
+    <div class="search-container mt-1 mb-4 text-center">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search" placeholder="Pesquisar..." onkeyup="filtrarTabela()">
+    </div>        
+    <table id="ramaisTable" class="w-[80%] ml-5">
+        <tr>
+            <th class="text-left">Setor</th>
+            <th class="text-left">Ramal</th>
+        </tr>
+        <tr>
+            <td>Almoxarifado</td>
+            <td>8029</td>
+        </tr>
+        <tr>
+            <td>Almoxarifado - Coord.</td>
+            <td>1429</td>
+        </tr>
+        <tr>
+            <td>ASCOM</td>
+            <td>1432</td>
+        </tr>
+        <tr>
+            <td>ASCOM - Coord.</td>
+            <td>8034</td>
+        </tr>
+        <tr>
+            <td>Atd. ao Cliente</td>
+            <td>1406</td>
+        </tr>
+        <tr>
+            <td>Atd. ao Cliente</td>
+            <td>1408</td>
+        </tr>
+        <tr>
+            <td>Atd. ao Cliente</td>
+            <td>1416</td>
+        </tr>
+        <tr>
+            <td>Atd. ao Cliente - Coord.</td>
+            <td>1417</td>
+        </tr>
+        <tr>
+            <td>Atende</td>
+            <td>1410</td>
+        </tr>
+        <tr>
+            <td>Atende - Coord.</td>
+            <td>8036</td>
+        </tr>
+        <tr>
+            <td>CCO</td>
+            <td>3920</td>
+        </tr>
+        <tr>
+            <td>CET</td>
+            <td>8017</td>
+        </tr>
+        <tr>
+            <td>CET - Coord.</td>
+            <td>8016</td>
+        </tr>
+        <tr>
+            <td>COAD</td>
+            <td>8161</td>
+        </tr>
+        <tr>
+            <td>COAD - Coord.</td>
+            <td>8021</td>
+        </tr>
+        <tr>
+            <td>COCC</td>
+            <td>2257</td>
+        </tr>
+        <tr>
+            <td>COORF</td>
+            <td>1420</td>
+        </tr>
+        <tr>
+            <td>COORF</td>
+            <td>8027</td>
+        </tr>
+        <tr>
+            <td>COORF - Coord.</td>
+            <td>8022</td>
+        </tr>
+        <tr>
+            <td>COPOB</td>
+            <td>1422</td>
+        </tr>
+        <tr>
+            <td>COPOB</td>
+            <td>1427</td>
+        </tr>
+        <tr>
+            <td>COOC - Coord.</td>
+            <td>8026</td>
+        </tr>
+        <tr>
+            <td>COT</td>
+            <td>8012</td>
+        </tr>
+        <tr>
+            <td>COT</td>
+            <td>8013</td>
+        </tr>
+        <tr>
+            <td>COT</td>
+            <td>8018</td>
+        </tr>
+        <tr>
+            <td>COT - Coord.</td>
+            <td>8015</td>
+        </tr>
+        <tr>
+            <td>COTAX - Atendimento</td>
+            <td>1402</td>
+        </tr>
+        <tr>
+            <td>COTAX - Atendimento</td>
+            <td>8045</td>
+        </tr>
+        <tr>
+            <td>COTAX - Coord.</td>
+            <td>8031</td>
+        </tr>
+        <tr>
+            <td>CPD - Coordenadoria</td>
+            <td>8011</td>
+        </tr>
+        <tr>
+            <td>CPD - Suporte</td>
+            <td>1418</td>
+        </tr>
+        <tr>
+            <td>CPD - Suporte</td>
+            <td>8033</td>
+        </tr>
+        <tr>
+            <td>CRH</td>
+            <td>1413</td>
+        </tr>
+        <tr>
+            <td>CRH</td>
+            <td>8023</td>
+        </tr>
+        <tr>
+            <td>CRH - Coordenadoria</td>
+            <td>1426</td>
+        </tr>
+        <tr>
+            <td>CRH - Selma</td>
+            <td>8030</td>
+        </tr>
+        <tr>
+            <td>CTM</td>
+            <td>8041</td>
+        </tr>
+        <tr>
+            <td>D.P.S. / Secretária</td>
+            <td>1412</td>
+        </tr>
+        <tr>
+            <td>DAF - Secretária</td>
+            <td>1435</td>
+        </tr>
+        <tr>
+            <td>DT - Reserva de Material</td>
+            <td>8046</td>
+        </tr>
+        <tr>
+            <td>DT - Secretária</td>
+            <td>1455</td>
+        </tr>
+        <tr>
+            <td>DTP</td>
+            <td>8044</td>
+        </tr>
+        <tr>
+            <td>DTP - Secretária</td>
+            <td>8028</td>
+        </tr>
+        <tr>
+            <td>Estatística</td>
+            <td>8014</td>
+        </tr>
+        <tr>
+            <td>Gab. Chefe de Gabinete</td>
+            <td>1414</td>
+        </tr>
+        <tr>
+            <td>Gab. Superintendente - Secretária</td>
+            <td>1405</td>
+        </tr>
+        <tr>
+            <td>Guarita / Vigilância</td>
+            <td>1433</td>
+        </tr>
+        <tr>
+            <td>JARI</td>
+            <td>1453</td>
+        </tr>
+        <tr>
+            <td>JARI Coordenação</td>
+            <td>1431</td>
+        </tr>
+        <tr>
+            <td>Núcleo de Proc. de Multas</td>
+            <td>1421</td>
+        </tr>
+        <tr>
+            <td>Núcleo de Transporte</td>
+            <td>1403</td>
+        </tr>
+        <tr>
+            <td>Ouvidoria</td>
+            <td>1400</td>
+        </tr>
+        <tr>
+            <td>Ouvidoria</td>
+            <td>1401</td>
+        </tr>
+        <tr>
+            <td>PROJUR - Secretária</td>
+            <td>1409</td>
+        </tr>
+        <tr>
+            <td>Protocolo</td>
+            <td>1428</td>
+        </tr>
+        <tr>
+            <td>Recepção</td>
+            <td>1001</td>
+        </tr>
+        <tr>
+            <td>Semafórica</td>
+            <td>8047</td>
+        </tr>
+        <tr>
+            <td>Teatro - Edu. p/ o Trânsito</td>
+            <td>1450</td>
+        </tr>
+    </table>     
+</div>
+</div>

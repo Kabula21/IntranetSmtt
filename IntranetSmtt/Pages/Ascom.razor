@@ -1,0 +1,112 @@
+@page "/ascom"
+@inject IJSRuntime JS
+
+<div class="col-span-3">
+    <div id="noticias">
+        <h2 class="text-1xl font-normal mb-0 p-4 bg-blue-500 text-white w-auto flex justify-between items-center">
+            <span>
+                <i class="fas fa-newspaper"></i> Últimas Notícias - ASCOM
+            </span>
+            <span class="space-x-3">
+                <a href="https://twitter.com/smttaju" target="_blank">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://instagram.com/smttaju" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </span>
+        </h2>
+
+        <!-- Carrossel de Notícias -->
+        <div class="carousel-container relative overflow-hidden w-full border-4 border-blue-500 h-[400px] sm:h-[450px] md:h-[450px]">
+            <div id="carousel"
+                class="flex transition-transform duration-500 ease-in-out h-[400px] sm:h-[450px] md:h-[450px] ">
+                
+                <!-- Item 1 -->
+                <div class="noticia w-full flex-shrink-0 relative">
+                    <a>
+                        <img src="http://smttaju.com.br/images/igallery/resized/9601-9700/Onibus_PcD_01-9630-800-600-80.jpeg"
+                            alt="Notícia 1" class="imagem-noticia mb-4 object-cover w-full h-full">
+                    </a>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900 to-transparent">
+                        <p class="text-white text-2xl">
+                            Transporte inclusivo: Pessoas com deficiência testam ônibus elétrico na capital
+                        </p>
+                        <a href="http://smttaju.com.br/smtt/noticias/transito/4259-transporte-inclusivo-pessoas-com-deficiencia-testam-onibus-eletrico-na-capital"
+                            class="text-blue-300 hover:underline" target="_blank">Ler Mais</a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="noticia w-full flex-shrink-0 relative">
+                    <a>
+                        <img src="http://smttaju.com.br/images/igallery/resized/9601-9700/Onibus_PcD_01-9630-800-600-80.jpeg"
+                            alt="Notícia 2" class="imagem-noticia mb-4 object-cover w-full h-full">
+                    </a>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900 to-transparent">
+                        <p class="text-white text-2xl">
+                            SMTT de Aracaju divulga alterações no trânsito da avenida Euclides Figueiredo
+                        </p>
+                        <a href="http://smttaju.com.br/smtt/noticias/transito/4258-smtt-de-aracaju-divulga-alteracoes-no-transito-da-avenida-euclides-figueiredo"
+                            class="text-blue-300 hover:underline" target="_blank">Ler Mais</a>
+                    </div>
+                </div>
+
+                 <!-- Item 3 -->
+                <div class="noticia w-full flex-shrink-0 relative">
+                    <a>
+                        <img src="http://smttaju.com.br/images/igallery/resized/9601-9700/Onibus_PcD_01-9630-800-600-80.jpeg"
+                            alt="Notícia 2" class="imagem-noticia mb-4 object-cover w-full h-full">
+                    </a>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-gray-900 to-transparent">
+                        <p class="text-white text-2xl">
+                            SMTT de Aracaju divulga alterações no trânsito da avenida Euclides Figueiredo
+                        </p>
+                        <a href="http://smttaju.com.br/smtt/noticias/transito/4258-smtt-de-aracaju-divulga-alteracoes-no-transito-da-avenida-euclides-figueiredo"
+                            class="text-blue-300 hover:underline" target="_blank">Ler Mais</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Setas de Navegação -->
+            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 text-white bg-gray-800 p-2 rounded-full hover:bg-gray-600"
+                @onclick="Prev">
+                &#8249;
+            </button>
+            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 text-white bg-gray-800 p-2 rounded-full hover:bg-gray-600"
+                @onclick="Next">
+                &#8250;
+            </button>
+        </div>
+
+        <div onclick="window.open('http://www.smttaju.com.br', '_blank')"
+            class="text-blue-500 hover:underline text-1xl font-normal p-1 mt-1 bg-blue-500 text-white w-auto">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Outras Notícias
+        </div>
+    </div>
+</div>
+
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(500); // Garante que o DOM está pronto
+            await JS.InvokeVoidAsync("carousel.init"); // Inicializa o carrossel
+            await JS.InvokeVoidAsync("carousel.startAutoScroll"); // Inicia auto-scroll
+        }
+    }
+
+    private async Task Next()
+    {
+        await JS.InvokeVoidAsync("carousel.showNextItem");
+    }
+
+    private async Task Prev()
+    {
+        await JS.InvokeVoidAsync("carousel.showPrevItem");
+    }
+}
+
+
