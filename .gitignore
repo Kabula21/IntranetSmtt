@@ -1,0 +1,33 @@
+# Pastas do .NET
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Configurações do Visual Studio e VS Code
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Dependências que não devem ser versionadas
+node_modules/
+packages/
+
+# Blazor WebAssembly - arquivos gerados automaticamente
+wwwroot/_framework/
+wwwroot/_content/
+wwwroot/service-worker*
+wwwroot/manifest.json
+wwwroot/index.html
+
+# Logs e arquivos de depuração
+*.log
+*.bak
+*.swp
+*.pid
+*.seed
+*.coverage
