@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// SCRIPT CARROUSEL NOTICIAS ASCOM//
 window.carousel = {
     currentIndex: 0,
     totalItems: 3,
@@ -174,7 +175,7 @@ function addClickEventToBirthdays() {
         }
     }, 500); // Aguarde um pouco para garantir que os elementos estão na DOM
 }
-
+// EXIBIR PALMAS//
 function exibirPalmas() {
     console.log("Exibindo palmas animadas! 👏👏👏");
 
@@ -193,13 +194,12 @@ function exibirPalmas() {
         setTimeout(() => palmas.remove(), 1000);
     }, 500);
 }
-
-
 // Função para executar assim que o DOM estiver carregado
 window.addEventListener('DOMContentLoaded', () => {
     mostrarMesAtual(); // Exibe o mês atual
     showBirthdayOfTheDay(); // Exibe os aniversariantes do dia
 });
+
 
 // Executa a função filtrar RAMAIS
 function filtrarTabela() {
@@ -240,7 +240,7 @@ function typeText(text, callback) {
         if (i < text.length) {
             textElement.textContent += text.charAt(i);
             i++;
-            setTimeout(typingEffect, 110);
+            setTimeout(typingEffect, 80);
         } else {
             setTimeout(() => {
                 let j = text.length;
@@ -254,7 +254,7 @@ function typeText(text, callback) {
                     }
                 }
                 reverseTypingEffect();
-            }, 1000);
+            }, 500);
         }
     }
     typingEffect();
@@ -271,7 +271,7 @@ function startAnimation() {
     typeText("Olá, bem-vindo(a)!", () => {
         setTimeout(() => {
             typeText("Intranet - SMTT Aracaju", () => {
-                setTimeout(startAnimation, 900);
+                setTimeout(startAnimation, 100);
             });
         }, 1000);
     });
