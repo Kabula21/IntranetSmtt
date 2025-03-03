@@ -1,0 +1,18 @@
+@page "/editoraniversariantes"
+@inject IJSRuntime JS
+
+<div id="editor2" class="h-40"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("eval", @"
+                var quill = new Quill('#editor2', {
+                    theme: 'snow'
+                });
+            ");
+        }
+    }
+}

@@ -3,16 +3,21 @@
 
 <div class="flex items-center justify-between mt-10 border p-2 rounded bg-gray-100 ml-[250px]">
     <div class="flex space-x-2">
-         <span class="py-2 material-icons">power_settings_new</span>
+        <span class="py-2 material-icons">power_settings_new</span>
         <span class="py-2">Acessar</span>
-        <input type="text" placeholder="Usuário" class="px-2 py-1 border rounded focus:outline-none" @bind="Username" />
-        <input type="password" placeholder="Senha" class="px-2 py-1 border rounded focus:outline-none" @bind="Password" />
-        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition" @onclick="Login">Logar</button>
+        <input type="text" placeholder="Usuário" class="px-2 py-1 border rounded focus:outline-none" @bind="Username"
+            @onkeydown="HandleKeyPress" />
+        <input type="password" placeholder="Senha" class="px-2 py-1 border rounded focus:outline-none" @bind="Password"
+            @onkeydown="HandleKeyPress" />
+        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+            @onclick="Login">Logar</button>
     </div>
-    <button class="text-black px-4 py-2 flex items-center space-x-2 hover:text-gray-700 transition relative ml-auto" @onclick="GoHome">
+    <button class="text-black px-4 py-2 flex items-center space-x-2 hover:text-gray-700 transition relative ml-auto"
+        @onclick="GoHome">
         <span class="hidden md:inline">Sair</span>
         <i class="material-icons">exit_to_app</i>
-        <span class="absolute bottom-full mb-1 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Sair</span>
+        <span
+            class="absolute bottom-full mb-1 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Sair</span>
     </button>
 </div>
 
@@ -23,7 +28,8 @@
         <div class="bg-white p-6 rounded-md w-1/3" @onclick:stopPropagation>
             <h5 class="text-xl font-semibold mb-4">Erro de Autenticação</h5>
             <p>@ErrorMessage</p>
-            <button class="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" @onclick="CloseModal">Fechar</button>
+            <button class="mt-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                @onclick="CloseModal">Fechar</button>
         </div>
     </div>
 }
@@ -32,18 +38,29 @@
 {
     <div class="flex items-center justify-between mt-4 border p-2 rounded bg-gray-100 ml-[250px] overflow-y-auto">
         <div class="accordion w-full">
-            @foreach (var mes in new[] { "Editor ASCOM", "Editor Avisos", "Editor Ramais", "Editor Eventos", "Editor Datas Comemorativas", "Editor Aniversariantes" })
+            @foreach (var mes in new Dictionary<string, Func<RenderFragment>>
+                {
+                { "Editor ASCOM", () => @<EditorAscom /> },
+                { "Editor Avisos", () => @<EditorAvisos /> },
+                { "Editor Ramais", () => @<EditorRamais/> },
+                { "Editor Eventos", () => @<EditorEventos/> },
+                { "Editor Datas Comemorativas", () => @<EditorDatasComemorativas/> },
+                { "Editor Aniversariantes", () => @<EditorAniversariantes/> }
+                })
             {
-                <button @onclick="() => SelectAccordion(mes)" class="accordion w-full p-4 text-left focus:outline-none text-gray-600 hover:bg-blue-200 transition-all ease-in-out @(selectedAccordion == mes ? "bg-blue-300" : "")">
-                    <span class="flex justify-between items-center">@mes
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-all ease-in-out @(selectedAccordion == mes ? "rotate-180" : "")" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <button @onclick="() => SelectAccordion(mes.Key)"
+                    class="accordion w-full p-4 text-left focus:outline-none text-gray-600 hover:bg-blue-200 transition-all ease-in-out @(selectedAccordion == mes.Key ? "bg-blue-300" : "")">
+                    <span class="flex justify-between items-center">@mes.Key
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 transform transition-all ease-in-out @(selectedAccordion == mes.Key ? "rotate-180" : "")"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </span>
                 </button>
-                <div class="panel p-4 bg-gray-100" style="display: @(selectedAccordion == mes ? "block" : "none")">
+                <div class="panel p-4 bg-gray-100" style="display: @(selectedAccordion == mes.Key ? "block" : "none")">
                     <ul>
-                        <li class="bg-gray-200 p-2 rounded">Este conteúdo só aparece após o login!</li>
+                        <li class="bg-gray-200 p-2 rounded">@mes.Value.Invoke()</li>
                     </ul>
                 </div>
             }
@@ -68,22 +85,24 @@
         }
     }
 
-    private void Login()
+    private async Task Login()
     {
+        ErrorMessage = null; // Apaga a mensagem de erro ANTES de verificar as credenciais
+
+        // Aguarda um pequeno tempo para evitar que a UI renderize errado
+        await Task.Delay(1);
+
         if (Username == "admin" && Password == "admin")
         {
             IsLoggedIn = true;
-            ErrorMessage = null; // Limpa a mensagem de erro caso o login seja bem-sucedido
         }
         else
         {
-            IsLoggedIn = false;
-            ErrorMessage = "Credenciais inválidas. Tente novamente."; // Exibe a mensagem de erro
+            ErrorMessage = "Credenciais inválidas. Tente novamente.";
             Console.WriteLine("Credenciais inválidas.");
         }
 
-        // Lógica de autenticação pode ser adicionada aqui
-        Console.WriteLine($"Usuário: {Username}, Senha: {Password}");
+        StateHasChanged(); // Garante que o estado seja atualizado corretamente
     }
 
     private void CloseModal()
@@ -91,15 +110,15 @@
         ErrorMessage = null;
     }
 
-    protected override void OnInitialized()
-    {
-        var mesAtual = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("pt-BR"));
-        selectedAccordion = char.ToUpper(mesAtual[0]) + mesAtual.Substring(1);
-    }
-
     private void SelectAccordion(string accordion)
     {
-        // Se o acordeão já estiver selecionado, ele será desmarcado
         selectedAccordion = selectedAccordion == accordion ? null : accordion;
+    }
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Login();
+        }
     }
 }

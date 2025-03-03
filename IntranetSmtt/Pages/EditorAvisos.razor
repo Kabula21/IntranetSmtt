@@ -1,0 +1,18 @@
+@page "/editoravisos"
+@inject IJSRuntime JS
+
+<div id="editor" class="h-40"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("eval", @"
+                var quill = new Quill('#editor', {
+                    theme: 'snow'
+                });
+            ");
+        }
+    }
+}
