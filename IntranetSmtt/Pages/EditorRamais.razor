@@ -2,18 +2,51 @@
 @inject IJSRuntime JS
 
 <div id="editorramais" class="h-40"></div>
-<button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">Salvar</button>
+<button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+
+<!-- Modal de Sucesso -->
+@if (!string.IsNullOrEmpty(SuccessMessage))
+{
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50" @onclick="CloseModal">
+        <div class="bg-white p-6 rounded-md w-1/3" @onclick:stopPropagation>
+            <h5 class="text-xl font-semibold mb-0">✅ Sucesso</h5>
+            <p>@SuccessMessage</p>
+            <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                @onclick="CloseModal">Fechar</button>
+        </div>
+    </div>
+}
 
 @code {
+    private string? SuccessMessage { get; set; } = null;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             await JS.InvokeVoidAsync("eval", @"
-                var quill = new Quill('#editorramais', {
-                    theme: 'snow'
-                });
+            var quill = new Quill('#editorramais', {
+            theme: 'snow'
+            });
             ");
         }
     }
+
+    private async Task Salvar()
+    {
+        // Lógica para salvar o conteúdo do editor Quill
+        var content = await JS.InvokeAsync<string>("eval", "quill.root.innerHTML");
+
+        // Aqui você pode fazer o que quiser com o conteúdo, como salvar em um banco de dados
+
+        // Exibir a mensagem de sucesso
+        SuccessMessage = "Ramais atualizado no painel!";
+    }
+
+    private void CloseModal()
+    {
+        // Fechar o popup
+        SuccessMessage = null;
+    }
+
+
 }
