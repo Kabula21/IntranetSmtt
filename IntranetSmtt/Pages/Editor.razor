@@ -40,12 +40,12 @@
         <div class="accordion w-full">
             @foreach (var mes in new Dictionary<string, Func<RenderFragment>>
                 {
-                { "Editor ASCOM", () => @<EditorAscom /> },
-                { "Editor Avisos", () => @<EditorAvisos /> },
-                { "Editor Ramais", () => @<EditorRamais/> },
-                { "Editor Eventos", () => @<EditorEventos/> },
-                { "Editor Datas Comemorativas", () => @<EditorDatasComemorativas/> },
-                { "Editor Aniversariantes", () => @<EditorAniversariantes/> }
+                { "📰 Editor ASCOM", () => @<EditorAscom /> },
+                { "🔔 Editor Avisos", () => @<EditorAvisos /> },
+                { "📞 Editor Ramais", () => @<EditorRamais /> },
+                { "🎭 Editor Eventos", () => @<EditorEventos /> },
+                { "📅 Editor Datas Comemorativas", () => @<EditorDatasComemorativas /> },
+                { "🎂 Editor Aniversariantes", () => @<EditorAniversariantes /> }
                 })
             {
                 <button @onclick="() => SelectAccordion(mes.Key)"

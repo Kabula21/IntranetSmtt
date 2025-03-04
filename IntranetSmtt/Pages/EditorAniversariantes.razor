@@ -1,7 +1,8 @@
 @page "/editoraniversariantes"
 @inject IJSRuntime JS
 
-<div id="editor2" class="h-40"></div>
+<div id="editoraniversariantes" class="h-40"></div>
+<button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">Salvar</button>
 
 @code {
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -9,7 +10,7 @@
         if (firstRender)
         {
             await JS.InvokeVoidAsync("eval", @"
-                var quill = new Quill('#editor2', {
+                var quill = new Quill('#editoraniversariantes', {
                     theme: 'snow'
                 });
             ");
