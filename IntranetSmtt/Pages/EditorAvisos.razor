@@ -4,7 +4,6 @@
 <div id="editoravisos" class="h-40"></div>
 <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
 
-<!-- Modal de Sucesso -->
 @if (!string.IsNullOrEmpty(SuccessMessage))
 {
     <div class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50" @onclick="CloseModal">
@@ -19,34 +18,26 @@
 
 @code {
     private string? SuccessMessage { get; set; } = null;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("eval", @"
-            var quill = new Quill('#editoravisos', {
-            theme: 'snow'
-            });
-            ");
+            await JS.InvokeVoidAsync("quillIndexedDB.init");
+            StateHasChanged(); // Inicializa o Quill e carrega do IndexedDB
         }
     }
 
     private async Task Salvar()
     {
-        // Lógica para salvar o conteúdo do editor Quill
-        var content = await JS.InvokeAsync<string>("eval", "quill.root.innerHTML");
+        await JS.InvokeVoidAsync("quillIndexedDB.saveContent"); // Salva no IndexedDB
 
-        // Aqui você pode fazer o que quiser com o conteúdo, como salvar em um banco de dados
-
-        // Exibir a mensagem de sucesso
-        SuccessMessage = "Avisos atualizados no painel!";
+        SuccessMessage = "Você atualizou o quadro de avisos!";
+        StateHasChanged();
     }
 
     private void CloseModal()
     {
-        // Fechar o popup
         SuccessMessage = null;
     }
-
-
 }
