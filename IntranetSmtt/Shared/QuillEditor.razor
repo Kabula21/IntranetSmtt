@@ -1,0 +1,15 @@
+@inject IJSRuntime JS
+
+
+<div id="editoravisos" class="h-40"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("quillIndexedDB.init"); 
+        }
+    }
+}
+

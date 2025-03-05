@@ -1,7 +1,10 @@
 @page "/editoravisos"
 @inject IJSRuntime JS
 
-<div id="editoravisos" class="h-40"></div>
+
+
+<QuillEditor /> 
+
 <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
 
 @if (!string.IsNullOrEmpty(SuccessMessage))
@@ -17,16 +20,7 @@
 }
 
 @code {
-    private string? SuccessMessage { get; set; } = null;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("quillIndexedDB.init");
-            StateHasChanged(); // Inicializa o Quill e carrega do IndexedDB
-        }
-    }
+    private string? SuccessMessage { get; set; } = null;   
 
     private async Task Salvar()
     {

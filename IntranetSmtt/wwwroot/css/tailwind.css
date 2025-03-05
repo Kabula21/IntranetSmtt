@@ -42,3 +42,16 @@
     /* cor azul */
 }
 
+/* Personalizando os tamanhos do Quill com Tailwind */
+.ql-size-small {
+    @apply text-sm;
+}
+
+.ql-size-large {
+    @apply text-lg;
+}
+
+.ql-size-huge {
+    @apply text-4xl;
+}
+

@@ -4,9 +4,33 @@ window.quillIndexedDB = {
     instance: null,
 
     init: function () {
-        if (!this.instance) {
-            this.instance = new Quill('#editoravisos', { theme: 'snow' });
-            // Carregar conteúdo salvo ao iniciar
+        let editorContainer = document.getElementById('editoravisos');
+
+        if (!editorContainer) {
+            console.error("❌ Elemento #editoravisos não encontrado. Aguardando renderização...");
+            setTimeout(() => this.init(), 100); // Tenta inicializar novamente após 100ms
+            return;
+        }
+
+        if (!editorContainer.__quill) { 
+            editorContainer.innerHTML = ""; // Garante que o editor seja recriado
+           
+            let toolbarOptions = [
+                [{ 'size': ['small', false, 'large', 'huge'] }], // Ativa os tamanhos
+                ['bold', 'italic', 'underline'], // Formatação básica
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Listas
+                [{ 'align': [] }], // Alinhamento
+                ['clean'] // Remove formatação
+            ];
+
+            this.instance = new Quill('#editoravisos', { 
+                theme: 'snow',
+                modules: {
+                    toolbar: toolbarOptions
+                },
+                formats: ['size', 'bold', 'italic', 'underline', 'list', 'align']
+            });        
+            editorContainer.__quill = this.instance; // Salva a instância no DOM
             this.loadContent();
         }
     },
@@ -68,19 +92,20 @@ window.quillIndexedDB = {
         let transaction = db.transaction(["AvisosStore"], "readonly");
         let store = transaction.objectStore("AvisosStore");
         let request = store.get(1);
-
+    
         return new Promise((resolve, reject) => {
             request.onsuccess = () => {
-                if (request.result) {
-                    resolve(request.result.content);
+                if (request.result && request.result.content) {
+                    resolve(request.result.content); // Retorna os avisos corretamente
                 } else {
-                    resolve("Nenhum aviso encontrado.");
+                    resolve(""); // Retorna string vazia para que Blazor use a mensagem padrão
                 }
             };
-
+    
             request.onerror = () => {
-                reject("Erro ao carregar avisos.");
+                resolve(""); // Retorna string vazia mesmo em erro
             };
         });
-    }
+    }   
+    
 };
