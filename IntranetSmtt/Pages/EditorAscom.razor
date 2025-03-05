@@ -4,32 +4,54 @@
 <div class="max-w-auto mx-auto p-0">
     <h1 class="text-2xl font-bold mb-4">Atualizar Carrossel de Notícias</h1>
     
-    <div class="space-y-4">
+    <!-- Abas -->
+    <div class="border-b">
+        <ul class="flex space-x-0">
+            <li class="cursor-pointer" @onclick="() => AtivarAba(1)">
+                <span class="@GetAbaClass(1)">Primeira Noticia</span>
+            </li>
+            <li class="cursor-pointer" @onclick="() => AtivarAba(2)">
+                <span class="@GetAbaClass(2)">Segunda Segunda</span>
+            </li>
+            <li class="cursor-pointer" @onclick="() => AtivarAba(3)">
+                <span class="@GetAbaClass(3)">Terceira Noticia</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div class="space-y-0 mt-2">
         <!-- Grupo 1 -->
-        <div class="p-4 border rounded-md shadow-sm bg-white">
-            <h2 class="text-lg font-semibold mb-2">Notícia Primeira</h2>
-            <input type="text" placeholder="Link da Matéria" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <input type="text" placeholder="Link da Imagem" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <input type="text" placeholder="Texto da Matéria" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+        <div class="@GetAbaVisibility(1)">
+            <div class="p-4 bg-white rounded-b-lg shadow-sm">
+                <h2 class="text-lg font-semibold mb-2">#Carrousel 1</h2>
+                <input type="text" placeholder="Link da Matéria 1" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <input type="text" placeholder="Link da Imagem 1" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <input type="text" placeholder="Texto da Matéria 1" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+            </div>
         </div>
-        
+
         <!-- Grupo 2 -->
-        <div class="p-4 border rounded-md shadow-sm bg-white">
-            <h2 class="text-lg font-semibold mb-2">Notícia Segunda</h2>
-            <input type="text" placeholder="Link da Matéria" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <input type="text" placeholder="Link da Imagem" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <input type="text" placeholder="Texto da Matéria" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+        <div class="@GetAbaVisibility(2)">
+            <div class="p-4 shadow-sm bg-white rounded-b-lg shadow-sm">
+                <h2 class="text-lg font-semibold mb-2">#Carrousel 2</h2>
+                <input type="text" placeholder="Link da Matéria 2" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <input type="text" placeholder="Link da Imagem 2" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <input type="text" placeholder="Texto da Matéria 2" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+            </div>
         </div>
-        
+
         <!-- Grupo 3 -->
-        <div class="p-4 border rounded-md shadow-sm bg-white">
-            <h2 class="text-lg font-semibold mb-2">Notícia Terceira</h2>
-            <input type="text" placeholder="Link da Matéria" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <input type="text" placeholder="Link da Imagem" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <input type="text" placeholder="Texto da Matéria" class="w-full p-2 border rounded mb-2 focus:outline-none">
-            <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+        <div class="@GetAbaVisibility(3)">
+            <div class="p-4 shadow-sm bg-white rounded-b-lg shadow-sm">
+                <h2 class="text-lg font-semibold mb-2">#Carrousel 3</h2>
+                <input type="text" placeholder="Link da Matéria 3" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <input type="text" placeholder="Link da Imagem 3" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <input type="text" placeholder="Texto da Matéria 3" class="w-full p-2 border rounded mb-2 focus:outline-none">
+                <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -47,7 +69,8 @@
 }
 
 @code {
-    private string? SuccessMessage { get; set; } = null;   
+    private string? SuccessMessage { get; set; } = null;
+    private int AbaAtiva { get; set; } = 1; // Controla a aba ativa
 
     private async Task Salvar()
     {
@@ -66,5 +89,27 @@
         SuccessMessage = null;
     }
 
+    private void AtivarAba(int aba)
+    {
+        AbaAtiva = aba;
+    }
 
+    private string GetAbaClass(int aba)
+    {
+        // Aba Ativa
+        if (AbaAtiva == aba)
+        {
+            return "font-semibold text-blue-600 bg-white rounded-t-lg border-b-2 border-blue-600 py-2 px-4";
+        }
+
+        // Aba Inativa
+        return "text-gray-500 hover:text-blue-600 bg-gray-100 rounded-t-lg py-2 px-4 border border-gray-300";
+    }
+
+
+    private string GetAbaVisibility(int aba)
+    {
+        // Controla a visibilidade do conteúdo com base na aba ativa
+        return AbaAtiva == aba ? "block" : "hidden";
+    }
 }
