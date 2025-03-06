@@ -1,8 +1,35 @@
 @page "/editordatascomemorativas"
 @inject IJSRuntime JS
 
-<div id="editordatascomemorativas" class="h-40"></div>
-<button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+<div class="max-w-auto mx-auto p-0">
+    <h1 class="text-2xl font-bold mb-4">Atualizar Datas Comemorativas</h1>
+
+    <!-- Abas (Meses do Ano) -->
+    <div class="border-b">
+        <ul class="flex space-x-0">
+            @foreach (var mes in MesesDoAno)
+            {
+                <li class="cursor-pointer" @onclick="() => AtivarAba(mes.Id)">
+                    <span class="@GetAbaClass(mes.Id)">@mes.Nome</span>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <!-- Conteúdo das Abas (TextArea para cada mês) -->
+    <div class="space-y-0 mt-2">
+        @foreach (var mes in MesesDoAno)
+        {
+            <div class="@GetAbaVisibility(mes.Id)">
+                <div class="p-4 bg-white rounded-b-lg shadow-sm">
+                    <h2 class="text-lg font-semibold mb-2">Insira o conteúdo</h2>
+                    <textarea @bind="mes.Texto" placeholder="Texto para @mes.Nome" class="w-full p-2 border rounded mb-2 focus:outline-none"></textarea>
+                    <button class="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600" @onclick="Salvar">Salvar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 <!-- Modal de Sucesso -->
 @if (!string.IsNullOrEmpty(SuccessMessage))
@@ -19,34 +46,67 @@
 
 @code {
     private string? SuccessMessage { get; set; } = null;
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private int AbaAtiva { get; set; } // Controla qual mês está ativo
+
+    // Lista de meses do ano com textos associados
+    private List<Mês> MesesDoAno = new List<Mês>
     {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("eval", @"
-            var quill = new Quill('#editordatascomemorativas', {
-            theme: 'snow'
-            });
-            ");
-        }
+        new Mês { Id = 1, Nome = "Janeiro", Texto = "" },
+        new Mês { Id = 2, Nome = "Fevereiro", Texto = "" },
+        new Mês { Id = 3, Nome = "Março", Texto = "" },
+        new Mês { Id = 4, Nome = "Abril", Texto = "" },
+        new Mês { Id = 5, Nome = "Maio", Texto = "" },
+        new Mês { Id = 6, Nome = "Junho", Texto = "" },
+        new Mês { Id = 7, Nome = "Julho", Texto = "" },
+        new Mês { Id = 8, Nome = "Agosto", Texto = "" },
+        new Mês { Id = 9, Nome = "Setembro", Texto = "" },
+        new Mês { Id = 10, Nome = "Outubro", Texto = "" },
+        new Mês { Id = 11, Nome = "Novembro", Texto = "" },
+        new Mês { Id = 12, Nome = "Dezembro", Texto = "" }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Define o mês atual como a aba ativa ao inicializar
+        AbaAtiva = DateTime.Now.Month; // Pega o mês atual
+        // Se não houver necessidade de operação assíncrona, remova o async ou adicione uma tarefa fictícia como exemplo
+        await Task.Delay(0); // Previne o aviso CS1998
     }
 
-    private async Task Salvar()
+    private void Salvar()
     {
-        // Lógica para salvar o conteúdo do editor Quill
-        var content = await JS.InvokeAsync<string>("eval", "quill.root.innerHTML");
-
-        // Aqui você pode fazer o que quiser com o conteúdo, como salvar em um banco de dados
-
-        // Exibir a mensagem de sucesso
+        // Lógica para salvar os dados dos meses, aqui estamos apenas exibindo uma mensagem
         SuccessMessage = "Datas Comemorativas atualizadas!";
     }
 
     private void CloseModal()
     {
-        // Fechar o popup
+        // Fechar o popup de sucesso
         SuccessMessage = null;
     }
 
+    private void AtivarAba(int id)
+    {
+        AbaAtiva = id; // Atualiza qual mês (aba) está ativo
+    }
 
+    private string GetAbaClass(int id)
+    {
+        return AbaAtiva == id
+            ? "font-semibold text-blue-600 bg-white rounded-t-lg border-b-2 border-blue-600 py-2 px-4"
+            : "text-gray-500 hover:text-blue-600 bg-gray-100 rounded-t-lg py-2 px-4 border border-gray-300";
+    }
+
+    private string GetAbaVisibility(int id)
+    {
+        return AbaAtiva == id ? "block" : "hidden"; // Controla a visibilidade da aba (mês)
+    }
+
+    // Classe para representar cada mês
+    public class Mês
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;  // Tornar como nullable ou inicializar com string.Empty
+        public string Texto { get; set; } = string.Empty; // Tornar como nullable ou inicializar com string.Empty
+    }
 }
