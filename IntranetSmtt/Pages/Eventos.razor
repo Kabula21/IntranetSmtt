@@ -4,13 +4,27 @@
 <div class="w-full flex flex-wrap gap-4"> 
 <div id="eventos" class="w-full">
     <h2 class="text-1xl font-normal p-4 bg-green-500 text-white w-full"><i class="fas fa-theater-masks"></i> Eventos</h2>
-    <div class="relative overflow-hidden w-full border-4 border-green-500 h-[250px] overflow-y-auto">
-        <ul class="mt-4 text-md text-justify space-y-2 ml-5">
-            <li>07/02 - Workshop de Inovação</li>
-            <li>14/02 - Palestra sobre Segurança Digital</li>
-            <li>22/02 - Evento de Integração da Equipe</li>
-            <li>28/02 - Reunião de Estratégia 2025</li>
-        </ul>
+    <div class="relative overflow-hidden w-full border-4 border-green-500 h-[486px] overflow-y-auto p-4">
+            @if (EventosContent == "Nenhum aviso disponível.")
+            {
+                <p class="text-center mt-5 text-gray-500">@EventosContent</p>
+            }
+            else
+            {
+                @((MarkupString)EventosContent)
+            }
+
+        </div>
     </div>
-</div>   
 </div>
+@code {
+    private string EventosContent = "";
+
+    protected override async Task OnInitializedAsync()
+    {   // Busca os avisos no IndexedDB
+        var eventos = await JS.InvokeAsync<string>("quillIndexedDBEventos.getEventos");
+        // Se a resposta for vazia ou nula, manter a mensagem padrão
+        EventosContent = string.IsNullOrWhiteSpace(eventos) ? "" : eventos;
+        StateHasChanged(); // Força a atualização do componente
+    }
+}
