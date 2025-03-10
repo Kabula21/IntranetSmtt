@@ -59,8 +59,8 @@
                         <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Gabinete da Superintendência</a>
                         <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> JARI</a>
                         <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Procuradoria Juridica (PROJUR)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Mundo</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Ouvidoria</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Mundo</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Downloads"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Ouvidoria</a>
                 </div>
                 </div>
                 <!-- Menu Sistemas -->
@@ -201,5 +201,10 @@
             await Task.Delay(500); // Aguarde 500ms antes de chamar o JS
             await JS.InvokeVoidAsync("startAnimation");
         }
+    }
+
+     private async Task AbrirPasta(string caminho)
+    {
+        await JS.InvokeVoidAsync("abrirLocalExplorer", caminho);
     }
 }
