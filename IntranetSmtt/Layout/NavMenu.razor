@@ -16,18 +16,18 @@
                     <button class="p-2 text-gray-600 flex justify-between items-center" onclick="toggleDropdown('regulamentos')">Documentos <i class="fas fa-chevron-down" id="icon-chevron"></i>
                     </button>
                     <div class="dropdown-menu absolute left-1/2 transform -translate-x-1/2 mt-0 w-[400px] bg-gray-100 shadow-md rounded-sm py-2 hidden group-hover:block">
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Leis</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Leis Complementares</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Manuais</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Portarias</a>                
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Leis</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Leis Complementares</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Manuais</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Portarias</a>                
                         <!-- Regulamentos -->
                         <div class="relative">
                             <button class="block px-4 py-2 text-left w-full" onclick="toggleSubmenu('regulamentos-submenu')">
                                 <i class="fas fa-chevron-right transition-transform transform ml-2" id="regulamentos-icon"></i> Regulamentos                               
                             </button>
                             <div id="regulamentos-submenu" class="pl-4 hidden">
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Taxi</a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> TE</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Taxi</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> TE</a>
                             </div>
                         </div>                
                         <!-- Modelo de Documentos -->
@@ -35,14 +35,14 @@
                             <button class="block px-4 py-2 text-left w-full" onclick="toggleSubmenu('modelos-submenu')"><i class="fas fa-chevron-right transition-transform transform ml-2" id="modelos-icon"></i> Modelo de Documentos                                
                             </button>
                             <div id="modelos-submenu" class="pl-4 hidden">
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Ofício</a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Assinaturas de E-mails e 1DOC</a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Circular</a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Estudo Técnico Preliminar</a>
-                                <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Termo de Referência</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Ofício</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Assinaturas de E-mails e 1DOC</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Circular</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Estudo Técnico Preliminar</a>
+                                <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-file"></i> Termo de Referência</a>
                             </div>
                         </div>                
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Políticas de TI</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-chevron-right"></i> Políticas de TI</a>
                     </div>
                 </div>
                 <!-- Menu Departamentos -->
@@ -50,16 +50,16 @@
                     <button class="p-2 text-gray-600">Departamentos <i class="fas fa-chevron-down"></i></button>
                     <div
                         class="dropdown-menu absolute left-1/2 transform -translate-x-1/2 mt-0 w-[450px] bg-gray-100 shadow-md rounded-sm py-2 hidden group-hover:block">
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Assessoria de Comunicação (Ascom)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria Administrativa e Financeira (DAF)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Tecnolocia da Informação (DTI)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Trânsito (DT)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Transporte Público (DTP)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Planejamento e Sistemas (DPF)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Gabinete da Superintendência</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> JARI</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Procuradoria Juridica (PROJUR)</a>
-                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Mundo</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Assessoria de Comunicação (Ascom)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria Administrativa e Financeira (DAF)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Tecnolocia da Informação (DTI)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Trânsito (DT)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Transporte Público (DTP)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Diretoria de Planejamento e Sistemas (DPF)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Gabinete da Superintendência</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> JARI</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Procuradoria Juridica (PROJUR)</a>
+                        <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\Kabula Fernandes\Documents"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Mundo</a>
                         <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Downloads"))" class="block px-4 py-2 hover:bg-white"><i class="fas fa-folder"></i> Ouvidoria</a>
                 </div>
                 </div>
@@ -73,49 +73,49 @@
                             <div class="border-r border-gray-300 pr-6">
                                 <a class="block px-4 py-2 ml-[-10px]"><i class="fas fa-chevron-right"></i> Atende</a>
                                 <div class="ml-4">
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GED</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TOTEM</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GED</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TOTEM</a>
                                 </div>
                             </div>
                             <!-- Coluna 2: Atendimento -->
                             <div class="border-r border-gray-300 pr-6">
                                 <a class="block px-4 py-2 ml-[-10px]"><i class="fas fa-chevron-right"></i> Atendimento</a>
                                 <div class="ml-4">
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> Credencial Estacionamento</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GED</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> JARI</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TOTEM</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> Credencial Estacionamento</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GED</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> JARI</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TOTEM</a>
                                 </div>
                             </div>
                             <!-- Coluna 3: Diretoria de Trânsito (DT) -->
                             <div>                                
                                 <a class="block px-4 py-2 "><i class="fas fa-chevron-right"></i> Diretoria de Trânsito (DT)</a>
                                 <div class="ml-4">
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> Eventos FINAN</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL CONSULTAS</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> SIATRAN</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> Eventos FINAN</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL CONSULTAS</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> SIATRAN</a>
                                 </div>
                             </div>
                             <!-- Coluna 1 (segunda linha): Diretoria de Trânsito (DTP) -->
                             <div class="border-r border-gray-300 pr-6">
                                 <a class="block px-4 py-2"><i class="fas fa-chevron-right"></i> Diretoria de Trânsporte Público (DTP) </a>
                                 <div class="ml-4">
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> COPOB</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> FOOD TRUCK</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TAXI</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TE</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> COPOB</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> FOOD TRUCK</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TAXI</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> TE</a>
                                 </div>
                             </div>
                             <!-- Coluna 2 (segunda linha): Diretoria de Tecnologia da Informação (DTI) -->
                             <div class="border-r border-gray-300 pr-6">
                                 <a class="block px-4 py-2"><i class="fas fa-chevron-right"></i> Diretoria de Tecnologia da Informação (DTI) </a>
                                 <div class="ml-4">
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> PATRIM DEVICES</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL CONSULTAS</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> JARI</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> SIATRAN</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> PATRIM DEVICES</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL CONSULTAS</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> JARI</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> SIATRAN</a>
                                     <a href="editor" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> INTRANET</a>
                                 </div>
                             </div>
@@ -123,8 +123,8 @@
                             <div>
                                 <a class="block px-4 py-2"><i class="fas fa-chevron-right"></i> JARI</a>
                                 <div class="ml-4">
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL</a>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> JARI</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> GERMUL</a>
+                                    <a href="javascript:void(0);" @onclick="@(() => AbrirPasta(@"C:\Users\aofernandes\Documents"))" class="block px-4 py-2 text-sm hover:bg-white relative"><i class="fas fa-desktop"></i> JARI</a>
                                 </div>
                             </div>
                         </div>
